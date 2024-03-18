@@ -24,10 +24,7 @@ app.use((req, res, next) => {
   });
   
 app.use(cookie_parser())
-app.use(cors( {
-    origin :"https://studynotion-frontend-zeta-indol.vercel.app/",
-    credentials : true
-}))
+app.use(cors())
 app.use(fileUpload({useTempFiles : true, tempFileDir:'/tmp'}))
 
 CloudinaryConnect()
