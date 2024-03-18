@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   
 app.use(cookie_parser())
 app.use(cors( {
-    origin :"https://studynotion-backend-kgfl.onrender.com",
+    origin :"https://studynotion-frontend-zeta-indol.vercel.app/",
     credentials : true
 }))
 app.use(fileUpload({useTempFiles : true, tempFileDir:'/tmp'}))
