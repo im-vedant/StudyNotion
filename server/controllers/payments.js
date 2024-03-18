@@ -72,8 +72,8 @@ async function capturePayment(req, res) {
       ],
 
       success_url:
-        "http://localhost:3000/checkout-completed?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:3000/",
+        "https://studynotion-frontend-zeta-indol.vercel.app/checkout-completed?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://studynotion-frontend-zeta-indol.vercel.app/",
       metadata: {
         userId: userId,
         courses: JSON.stringify(courses),
