@@ -9,6 +9,7 @@ const mailSender=async (email,title, body)=>{
             auth: {
               user: 'studynotion.official@gmail.com',
               pass: 'qsgh lsdq lwzz iqhc',
+              tls: {rejectUnauthorized: false},
             },
           })
           const info = await transporter.sendMail({
