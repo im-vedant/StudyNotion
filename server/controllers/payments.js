@@ -5,13 +5,13 @@ const {
   courseEnrollmentEmail,
 } = require("../mail_templates/courseEnrollmentEmail");
 const { default: mongoose } = require("mongoose");
+require('dotenv').config()
 const {
   paymentSuccessEmail,
 } = require("../mail_templates/paymentSuccessEmail");
-const endpointSecret =
-  "whsec_7173e0659197fc689a1e26798720b643462f3740aa97802308c52b644756a5b9";
+const endpointSecret = process.env.ENDPOINT_SECRET
 const stripe = require("stripe")(
-  "sk_test_51OPrXESACUyWX7X2ZQJ3rgsVzTTXHZwfE4O9C3bIpi2LmQCmPKvdEHToP94Rj6mkweMiuhLZVXONYAy6IXzAKJnD00tQhq6EY9"
+  process.env.STRIPE_SECRET_KEY
 );
 const courseProgress=require('../models/courseProgressModel')
 
@@ -71,9 +71,8 @@ async function capturePayment(req, res) {
         },
       ],
 
-      success_url:
-        "https://studynotion-frontend-zeta-indol.vercel.app/checkout-completed?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "https://studynotion-frontend-zeta-indol.vercel.app/",
+      success_url:`${process.env.FRONTEND_URL}/checkout-completed?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: process.env.FRONTEND_URL,
       metadata: {
         userId: userId,
         courses: JSON.stringify(courses),

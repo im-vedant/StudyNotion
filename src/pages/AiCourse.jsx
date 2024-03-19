@@ -12,6 +12,7 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import SubSection from "../components/core/AiCoursePage/SubSection";
 import { addAiCourseDetails } from "../services/operations/courseAPI";
+import {useNavigate} from 'react-router-dom'
 const output_format = {
   courseName: "title of the course same as given by the user",
   courseDescription: "Description of the course. Do not give array.",
@@ -48,6 +49,7 @@ const image_output_format = {
   image_search_term: "App development",
 };
 const AiCourse = () => {
+  const navigate=useNavigate()
   const dispatch=useDispatch()
     const [loading,setLoading]=useState(false)
   const [input, setInput] = useState("");
@@ -112,10 +114,12 @@ let imageUrl;
     setLoading(false)
     dispatch(setCourseData({...courseDetails, thumbnail:imageUrl}))
   }
-  function generateCourse()
+  async function generateCourse()
   {
     console.log(courseData)
-    addAiCourseDetails(courseData,token)
+    let result =await addAiCourseDetails(courseData,token)
+    if(result!==null)
+    navigate('/dashboard/my-courses')
   }
   return  <div>
           {
@@ -162,7 +166,7 @@ let imageUrl;
                     })
                 }
                  <div className="flex flex-row justify-between mt-8 items-center">
-            <button onClick={()=>setCourseData(null)} className="flex flex-row items-center space-x-2 px-3 py-2 text-white bg-richblack-500 rounded-lg">
+            <button onClick={()=>dispatch(setCourseData(null))} className="flex flex-row items-center space-x-2 px-3 py-2 text-white bg-richblack-500 rounded-lg">
             <MdKeyboardArrowLeft/>
                <p>Back</p>
             </button>
