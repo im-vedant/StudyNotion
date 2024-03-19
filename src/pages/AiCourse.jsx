@@ -50,7 +50,6 @@ const image_output_format = {
 const AiCourse = () => {
   const dispatch=useDispatch()
     const [loading,setLoading]=useState(false)
-    const [makeReq, setMakeReq]=useState(false)
   const [input, setInput] = useState("");
   const {token}=useSelector((store)=>store.auth)
  const {courseData}=useSelector((store)=>store.aicourse)
@@ -156,7 +155,7 @@ let imageUrl;
                         <h3 className="text-2xl text-richblack-200 font-bold">{item.title}</h3>
                         <div className="mt-3 text-richblack-200">
                           {item.chapters.map((chapter,index) => {
-                           return <SubSection youtube_search_term={chapter.youtube_search_query} key={index} makeReq={makeReq} chapter_title={chapter.chapter_title}/>
+                           return <SubSection key={index} chapter_title={chapter.chapter_title}/>
                           })}
                         </div>
                       </div>
