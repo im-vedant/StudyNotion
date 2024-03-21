@@ -39,7 +39,7 @@ export default function Instructor() {
   
     return (
     <div className='w-full'>
-        <div className=' mx-auto my-14'>
+        <div className=' mx-auto max-w-[1000px] my-14'>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-richblack-5">
             Hi {user?.firstName} 👋
@@ -49,7 +49,7 @@ export default function Instructor() {
           </p>
         </div>
         {loading ? (
-         <div className='flex justify-center items-center'><Spinner/></div>
+         <div className='flex justify-center mt-8 items-center'><Spinner size={70}/></div>
         ) : courses.length > 0 ? (
           <div>
             <div className="my-4 flex h-[450px] space-x-4">
