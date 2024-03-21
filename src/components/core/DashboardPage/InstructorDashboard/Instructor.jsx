@@ -38,7 +38,7 @@ export default function Instructor() {
     )
   
     return (
-      <div className=' mx-auto my-14'>
+      <div className=' mx-auto w-full my-14'>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-richblack-5">
             Hi {user?.firstName} 👋

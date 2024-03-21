@@ -23,7 +23,7 @@ const MyCourses = () => {
     },[])
   return (
 
-    <div className='bg-richblack-900 w-full mb-[100px] max-w-[1000px]  '>
+    <div className='bg-richblack-900 w-full mb-[100px]   '>
      <div className='p-6'>
       <p className='text-[14px] leading-[22px] mb-3 text-richblack-300'>Home / Dashboard / <span className='capitalize text-yellow-50'>My Courses</span></p>
         <div className='flex flex-row justify-between items-center'>
