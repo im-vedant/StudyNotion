@@ -4,6 +4,7 @@ import { getAllInstructorCourses } from '../../../services/operations/courseAPI'
 import { useSelector } from 'react-redux';
 import CourseTable from './InstructorCourses/CourseTable';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../../../utils/Spinner';
 
 const MyCourses = () => {
     const {token}=useSelector((store)=>store.auth)
@@ -23,7 +24,8 @@ const MyCourses = () => {
     },[])
   return (
 
-    <div className='bg-richblack-900 w-full mb-[100px]   '>
+   <div className='w-full'>
+     <div className='bg-richblack-900 w-full max-w-[1000px] mb-[100px]   '>
      <div className='p-6'>
       <p className='text-[14px] leading-[22px] mb-3 text-richblack-300'>Home / Dashboard / <span className='capitalize text-yellow-50'>My Courses</span></p>
         <div className='flex flex-row justify-between items-center'>
@@ -35,11 +37,12 @@ const MyCourses = () => {
         </div>
      </div>
      {
-        loading ? <div>Loading...</div> : 
+        loading ? <div className='flex justify-center items-center mt-8'> <Spinner size={70}/></div> : 
        <CourseTable courses={courses} setCourses={setCourses}/>
      }
     
     </div>
+   </div>
   )
 }
 

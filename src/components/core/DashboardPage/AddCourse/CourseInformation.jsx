@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import Spinner from '../../../../utils/Spinner'
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { useEffect } from "react";
 import apiConnector from "../../../../services/apiConnector";
@@ -13,6 +14,7 @@ import { MdNavigateNext } from "react-icons/md"
 import { addCourseDetails,editCourseDetails } from "../../../../services/operations/courseAPI";
 const CourseInformation = () => {
   const dispatch=useDispatch()
+  const [isDataFetching, setIsDataFetching]=useState(false)
   const {editCourse ,course}=useSelector((store)=>store.course)
   const {token}=useSelector((store)=>store.auth)
   const {register,handleSubmit,reset,setValue,getValues,formState :{errors, isSubmitSuccessful}}=useForm()
@@ -79,16 +81,15 @@ const CourseInformation = () => {
     setValues(newValues);
   };
   async function getCatalog() {
+    
+    setIsDataFetching(true)
     try {
       const result = await apiConnector("GET", catalogData.CATEGORIES_API);
       setSubLinks(result.data.allCategory);
+      console.log(result.data.allCategory)
     } catch (error) {
       console.log("Could not fetch the category list");
     }
-  }
-
-  useEffect(() => {
-    getCatalog();
     if(editCourse)
     {
       setValue('courseTitle',course.courseName)
@@ -96,10 +97,18 @@ const CourseInformation = () => {
       setValue('price',course.price)
       setValue('benefits',course.WhatWillYouLearn)
       setValue('category',course?.category?._id) 
+      console.log(course.category._id)
       setValues(course.tag)
       setInstructions(course.instructions)
       setPreviewSource(course.thumbnail)
     }
+    setIsDataFetching(false)
+   
+  }
+
+  useEffect( () => {
+    getCatalog()
+    
   }, []);
   const isFormUpdated = () => {
     const currentValues = getValues()
@@ -193,6 +202,10 @@ const CourseInformation = () => {
     return
     }
   }
+  if(isDataFetching)
+  return <div className="flex justify-center items-center mt-4">
+    <Spinner size={70}/>
+  </div>
   return (
     <form onKeyDown={(e)=>{
       if(e.key==="Enter")
@@ -303,7 +316,7 @@ const CourseInformation = () => {
           onKeyDown={handleInputKeyDown}
           placeholder="Add tags and press Enter"
         />
-        <div className="flex flex-row space-x-3">
+        <div className="flex flex-row flex-wrap gap-3">
           {values.map((value, index) => (
             <div className="px-3 mt-2 bg-yellow-200 text-richblack-5 py-1 rounded-lg flex flex-row justify-center space-x-1 items-center">
               <span key={index}>{value}</span>

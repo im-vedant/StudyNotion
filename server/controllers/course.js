@@ -208,6 +208,13 @@ async function editCourse(req, res) {
         },
       })
       .populate("category")
+      .populate("ratingAndReviews")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
       .exec();
     return res.json({
       success: true,
