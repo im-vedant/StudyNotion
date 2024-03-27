@@ -9,6 +9,7 @@ import ProfileDropDown from '../core/Auth/ProfileDropDown'
 import { useEffect, useState } from 'react'
 import apiConnector from '../../services/apiConnector'
 import { catalogData } from '../../services/api'
+import Spinner from '../../utils/Spinner'
 function Navbar() { 
   const {token}=useSelector((store)=>store.auth)
   const {user}=useSelector((store)=>store.profile)
@@ -44,7 +45,7 @@ function Navbar() {
                     return <Link to={`/catalog/${item.name.toLowerCase().replace(" ","-")}`} key={index}><div>{item.name}</div></Link>
                   })
                   :
-                  <div></div>
+                  <div className='w-full justify-center items-center flex'> <Spinner/> </div>
                 }
                 </div>
               
