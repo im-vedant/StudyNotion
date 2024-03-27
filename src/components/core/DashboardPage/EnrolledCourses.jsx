@@ -45,7 +45,7 @@ const EnrolledCourses = () => {
       
           {
           
-            enrolledCourses.length===0 ? <p>Your are not enrolled in any course</p> :
+            enrolledCourses?.length===0 ? <p>Your are not enrolled in any course</p> :
             <div className='overflow-hidden rounded-lg m-6 border border-richblack-700'>
               <div className='flex border-richblack-700 border-b text-richblack-50 flex-row p-4 bg-richblack-700'>
                 <p className='w-[60%]'>Course Name</p>
