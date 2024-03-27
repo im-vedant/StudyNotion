@@ -16,12 +16,14 @@ const CourseCard = ({item, height}) => {
       
         return avgReviewCount
       }
+
+      let reviewCount=GetAvgRating(item?.ratingAndReviews)
   return (
     <Link to={`/courses/${item._id}`}>
       <div className=''>
         <img src={item.thumbnail} alt="" className='w-full object-cover rounded-lg' style={{height : `${height}px`}} />
         <h2 className='mt-[20px] mb-[9px] text-richblack-5 text-[16px] font-medium'>{item.courseName}</h2>
-        <RatingStars Star_Size={22} Review_Count={4}/>
+        <RatingStars Star_Size={22} Review_Count={reviewCount}/>
         <p className='text-richblack-5 text-[20px] font-semibold mt-[9px]'>Rs. {item.price}</p>
     </div>
     </Link>

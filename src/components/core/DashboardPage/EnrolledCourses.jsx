@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { getUserEnrolledCourses } from '../../../services/operations/enrolledCourseAPI'
+import { DoneAllOutlined } from '@mui/icons-material'
 const EnrolledCourses = () => {
     const {token}=useSelector((store)=>store.auth)
+    const [completedVideos,setCompletedVides]= useState([])
     const [enrolledCourses,setEnrolledCourses]=useState([])
     const location =useLocation()
     const [loading,setLoading]=useState(false)
@@ -13,7 +15,8 @@ const EnrolledCourses = () => {
         try {
           setLoading(true)
             const response=await getUserEnrolledCourses(token)
-            setEnrolledCourses(response)
+            setEnrolledCourses(response.courses)
+            setCompletedVides(response.completedVideos)
         } catch (error) {
             console.log("Unable to fetch enrolled courses")
         }
@@ -45,6 +48,26 @@ const EnrolledCourses = () => {
               </div>
               {
                 enrolledCourses.map((item)=>{
+                  let progress=0
+                  let count=0
+                  let done=0
+                  function getProgress(){
+                    for(let x of item.courseContent)
+                    {
+                    
+                      for(let y of x.subSection)
+                      {
+                        count++;
+                        console.log(y)
+                        if(completedVideos.includes(y))
+                        done++
+                      }
+                    }
+                  }
+                  getProgress()
+                  progress=Math.round((done/count)*100 )
+                  console.log(progress, count)
+
                   return <div className='flex border-b border-richblack-700 text-richblack-50 flex-row p-4 '>
                  <Link to={`/view-course/${item._id}`} className='w-[60%]'>
                  
@@ -58,9 +81,9 @@ const EnrolledCourses = () => {
                   <p className='w-[20%]'>{item?.duration || "2hr 30 mins"}</p>
                   <div className='w-[20%] '>
                     <p>Progess 
-                      {" "} {item?.progress || 0}%</p>
+                      {" "} {progress || 0}%</p>
                       <div className='rounded-full mt-1 bg-richblack-700 w-[150px] h-2'>
-                        <div style={{width : `${item?.progress || 0}%`}} className='rounded-full h-2 bg-blue-100'></div>
+                        <div style={{width : `${progress || 0}%`}} className='rounded-full h-2 bg-blue-100'></div>
                       </div>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 const course = require('../models/courseModel')
 const profile=require('../models/profileModel')
 const user=require('../models/userModel')
+const courseProgess=require('../models/courseProgressModel')
 const fileupload=require('express-fileupload')
 const {deleteImage}=require('../utils/deleteFromCloudinary')
 require('dotenv').config()
@@ -137,7 +138,12 @@ async function getEnrolledCourses(req,res)
     try {
         const id=req.user.id
 
-        const userDetails=await user.findById(id).populate("courses")
+        const userDetails=await user.findById(id).populate({
+            path : "courses",
+            populate : {
+                path : "courseContent",
+            }
+        }).exec()
         if(!userDetails)
         {
             return res.status(501).json({
@@ -146,12 +152,16 @@ async function getEnrolledCourses(req,res)
             })
         }
         const courses=userDetails.courses
+        const completedVideos=await courseProgess.find({userId : id})
+
         return res.status(200).json({
             message :' Enrolled Courses fetched successfully',
             success : true,
-            courses
+            courses,
+            completedVideos: completedVideos.flatMap(item=>item.completedVideos)
         })
     } catch (error) {
+        console.log(error)
         return res.status(400).json({
             message :"Error while fetching enrolled courses",
             success : false,

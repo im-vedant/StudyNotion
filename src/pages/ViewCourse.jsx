@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ReviewModal from '../components/core/ViewCourse/ReviewModal'
 import ReactPlayer from 'react-player'
+import Spinner from '../utils/Spinner'
 const ViewCourse = () => {
     const {courseId}=useParams()
     const {token}=useSelector((store)=>store.auth)
@@ -83,7 +84,9 @@ console.log(showButtons)
       setLoading(false)
     }
     if(data===null)
-    return <div>Loading...</div>
+    return  <div className=" h-[500px]  flex justify-center items-center" >
+    <Spinner size={80}/>
+ </div>
   return (
     <div className='flex flex-row justify-between '>
         <VideoSideBar setIsOpen={setIsOpen} sectionIndex={sectionIndex} subSectionId={sections[sectionIndex][subSectionIndex]._id} setSectionIndex={setSectionIndex} setSubSectionIndex={setSubSectionIndex}  data={data.courseDetails} completedVideos={data.completedVideos}/>

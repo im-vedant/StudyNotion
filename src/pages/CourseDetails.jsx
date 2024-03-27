@@ -46,7 +46,7 @@ const CourseDetails = () => {
   useEffect(()=>{
     if(courseDetails)
     fetchReview()
-  },[])
+  },[courseDetails])
 
   if (courseDetails === null) return 
   <div className="flex justify-center items-center">
@@ -105,7 +105,7 @@ const CourseDetails = () => {
            </div>
         </div>
       </section>
-      <div className="max-w-[1200px] mx-auto pb-[90px]">
+      <div className="max-w-[1200px] mx-auto mt-8 pb-[90px]">
           <h2 className="text-center text-richblack-5 leading-[44px] mb-10 text-[36px] font-semibold">
             Reviews from other learners
           </h2>
@@ -114,6 +114,7 @@ const CourseDetails = () => {
             <div className="flex justify-center items-center">
               <CircularProgress/>
             </div>
+            : reviewData.length===0 ? <div className="text-richblack-5 text-center text-2xl">No reviews found</div>
             : <ReviewSlider data={reviewData}/>
           }
           <div>
