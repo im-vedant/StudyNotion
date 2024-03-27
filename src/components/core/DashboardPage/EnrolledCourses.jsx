@@ -16,6 +16,7 @@ const EnrolledCourses = () => {
           setLoading(true)
             const response=await getUserEnrolledCourses(token)
             setEnrolledCourses(response.courses)
+            
             setCompletedVides(response.completedVideos)
         } catch (error) {
             console.log("Unable to fetch enrolled courses")
@@ -39,10 +40,7 @@ const EnrolledCourses = () => {
       <p className='text-[14px] leading-[22px] mb-3 text-richblack-300'>Home / Dashboard / <span className='capitalize text-yellow-50'>{currentSelected}</span></p>
      <h2 className='text-richblack-5 font-medium text-[30px] leading-[38px]'>Enrolled Courses</h2>
      </div>
-     {
-      console.log(enrolledCourses)
-     }
-      
+   
           {
           
             enrolledCourses?.length===0 ? <p>Your are not enrolled in any course</p> :

@@ -11,7 +11,7 @@ export async function getUserEnrolledCourses(token)
          throw new Error("Could Not get Enrolled Courses")
        }
        toast.success("Enrolled Courses Fetched Successfully")
-      let result = response?.data?.courses 
+      let result = response?.data 
       toast.dismiss(toastId)
       return result   
     } catch (error) {
