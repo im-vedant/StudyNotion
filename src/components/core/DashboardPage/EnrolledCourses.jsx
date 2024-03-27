@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { getUserEnrolledCourses } from '../../../services/operations/enrolledCourseAPI'
-import { DoneAllOutlined } from '@mui/icons-material'
+import Spinner from '../../../utils/Spinner'
 const EnrolledCourses = () => {
     const {token}=useSelector((store)=>store.auth)
     const [completedVideos,setCompletedVides]= useState([])
@@ -28,7 +28,9 @@ const EnrolledCourses = () => {
 
     if(loading)
     {
-      return <div className='w-full'>Loading...</div>
+      return <div className="flex justify-center items-center">
+      <Spinner></Spinner>
+    </div>;
     }
   return (
     <div className='bg-richblack-900 w-full mb-[100px]  '>
