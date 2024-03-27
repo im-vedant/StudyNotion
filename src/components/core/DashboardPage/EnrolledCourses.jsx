@@ -28,7 +28,7 @@ const EnrolledCourses = () => {
 
     if(loading)
     {
-      return <div className="flex justify-center items-center">
+      return <div className="flex w-full justify-center items-center">
       <Spinner></Spinner>
     </div>;
     }
@@ -39,8 +39,12 @@ const EnrolledCourses = () => {
       <p className='text-[14px] leading-[22px] mb-3 text-richblack-300'>Home / Dashboard / <span className='capitalize text-yellow-50'>{currentSelected}</span></p>
      <h2 className='text-richblack-5 font-medium text-[30px] leading-[38px]'>Enrolled Courses</h2>
      </div>
+     {
+      console.log(enrolledCourses)
+     }
       
           {
+          
             enrolledCourses.length===0 ? <p>Your are not enrolled in any course</p> :
             <div className='overflow-hidden rounded-lg m-6 border border-richblack-700'>
               <div className='flex border-richblack-700 border-b text-richblack-50 flex-row p-4 bg-richblack-700'>
