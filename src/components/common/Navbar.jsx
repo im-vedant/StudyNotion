@@ -37,7 +37,7 @@ function Navbar() {
                 NavbarLinks.map((obj,index)=>(
                 obj.title==='Catalog' ? <div key={index} className='flex justify-center items-center gap-1 group'> <p>{obj.title}</p>  <IoIosArrowDown/>
                 <div className='invisible absolute z-10 left-[36%] top-[8%] flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 w-[300px]'>
-                <div className='absolute left-[39%] top-[-13%] h-6 w-6 rotate-45 rounded bg-richblack-5 '>
+                <div className='absolute left-[42%] top-[-13%] h-6 w-6 rotate-45 rounded bg-richblack-5 '>
                 </div>
                 { 
                   (subLinks.length>0) ?
