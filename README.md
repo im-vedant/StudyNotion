@@ -31,6 +31,10 @@ Welcome to our MERN stack web app that enables instructors to create courses and
 
 The Gemini AI course creation feature is designed to assist instructors in generating course content quickly and efficiently. Simply enter the topic, and Gemini AI will generate units, chapters, descriptions, and even recommend relevant YouTube videos.
 
+## Tutorial Video
+
+https://www.youtube.com/watch?v=MMbnxmDjV5Y
+
 
 ## Website
 
