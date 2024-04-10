@@ -23,7 +23,7 @@ const UpdatePassword = () => {
         dispatch(passwordReset(formData.newPassword, formData.confirmNewPassword,token,setIsPasswordChanged))
     }
   return (
-   <div className='flex flex-col justify-center items-center translate-y-[30%]'>
+   <div className='flex flex-col justify-center items-center my-[100px]'>
     {
         loading ? <h2>loading...</h2> : !isPasswordChanged ?
         <div className='max-w-[450px]'>
@@ -43,7 +43,7 @@ const UpdatePassword = () => {
             {showConfirmPassword ? (<AiOutlineEyeInvisible fontSize={24} fill='#AFB2BF'/>) : (<AiOutlineEye fontSize={24} fill='#AFB2BF'/>)}</span>
             </label>
             
-            <button className='p-3 bg-yellow-50 shadow-resetPasswordBtn mb-3 text-richblack-900 text-center font-medium text-[16px] w-full rounded-lg'>
+            <button className='p-3 bg-yellow-50 shadow-resetPasswordBtn mb-3 text-richblack-5 text-center font-medium text-[16px] w-full rounded-lg'>
                     Reset Password
             </button>
         </form>
