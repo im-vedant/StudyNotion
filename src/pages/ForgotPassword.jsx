@@ -14,7 +14,7 @@ const ForgotPassword = () => {
         dispatch(getPasswordResetToken(email, setEmailSent))
     }
   return (
-    <div className='text-richblack-5 flex justify-center items-center translate-y-[30%] w-full'>
+    <div className='text-richblack-5 flex justify-center items-center my-[100px] w-full'>
         {
             loading ? <div>Loading...</div> :
             <div className='max-w-[450px] '>
